@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Task List</title>
+</head>
+<body>
+<h1>Task List</h1>
+<a href="/add">Add New Task</a>
+<ul>
+    <li th:each="task : ${tasks}">
+        <span th:text="${task.title}">Task Title</span>
+        <span th:text="${task.completed} ? ' (Completed)' : ''"></span>
+    </li>
+</ul>
+<div>
+    <a th:href="@{/profile}">My Profile</a> |
+    <a th:href="@{/logout}">Logout</a>
+</div>
+</body>
+</html>

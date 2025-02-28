@@ -20,7 +20,7 @@ public class SecurityConfig {
                         .userInfoEndpoint(userInfo -> userInfo.oidcUserService(new OidcUserService()))
                 )
                 .oauth2ResourceServer(oauth2 -> oauth2
-                        .jwt(jwt -> jwt.jwkSetUri("https://cognito-idp.us-east-1.amazonaws.com/YOUR_USER_POOL_ID/.well-known/jwks.json"))
+                        .jwt(jwt -> jwt.jwkSetUri("https://cognito-idp.us-east-1.amazonaws.com/us-east-2_T1hO3n10n/.well-known/jwks.json"))
                 );
         return http.build();
     }

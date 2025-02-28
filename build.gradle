@@ -13,42 +13,32 @@ java {
 	}
 }
 
-configurations {
-	compileOnly {
-		extendsFrom annotationProcessor
-	}
-}
-
 repositories {
 	mavenCentral()
 }
 
-ext {
-	set('springAiVersion', "1.0.0-M6")
-}
-
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-data-rest'
-	implementation 'org.springframework.boot:spring-boot-starter-oauth2-authorization-server'
-	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
-	implementation 'org.springframework.boot:spring-boot-starter-security'
+	// Data & persistence using JPA
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+	// Web support and security
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+
+	// OAuth2 client for integration with AWS Cognito
+	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+
+	// Thymeleaf and Spring Security integration in views
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
-	implementation 'org.springframework.ai:spring-ai-openai-spring-boot-starter'
+	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
+
+	// AWS Cognito SDK (if you plan to call Cognito APIs directly)
+	implementation 'software.amazon.awssdk:cognitoidentityprovider:2.17.100'
+
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
+
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-}
-
-dependencyManagement {
-	imports {
-		mavenBom "org.springframework.ai:spring-ai-bom:${springAiVersion}"
-	}
-}
-
-tasks.named('test') {
-	useJUnitPlatform()
 }
